@@ -2,11 +2,16 @@ import tweepy
 import requests
 import pandas as pd
 
-# _lsun
-CONSUMER_KEY = "ax4mZCclRsJ7zrsxujdSSnnhY"
-CONSUMER_SECRET = "t0ytgg2eSdnkjobCT0aJxTXzMhbryAeGo69ZYv2sZ8kYJzSn4r"
-ACCESS_KEY ="1118664863536914432-hhGBGqWkXwBW8ZyOdZUZmy2sUFM1Tu"
-ACCESS_SECRET = "QNQZ4DSrZ7rOIDugsNNDphI77XEBk2Uzz44pCFSuujPAQ"
+from configparser import ConfigParser
+
+config = ConfigParser()
+
+config.read('dev.ini')
+
+CONSUMER_KEY = config.get('twitterapi', 'CONSUMER_KEY')
+CONSUMER_SECRET = config.get('twitterapi', 'CONSUMER_SECRET')
+ACCESS_KEY = config.get('twitterapi', 'ACCESS_KEY')
+ACCESS_SECRET = config.get('twitterapi', 'ACCESS_SECRET')
 
 # authentication
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
@@ -20,6 +25,9 @@ user = api.me()
 
 
 def get_timeline(username):
+    '''
+        Pulls all time tweets for username
+    '''
     all_tweets = []
     datetimes = []
     for status in tweepy.Cursor(api.user_timeline, screen_name='@'+username, tweet_mode="extended").items():
@@ -32,13 +40,37 @@ def get_timeline(username):
     return tl
 
 def tocsv(dataframe):
+    '''
+        Puts tweets into csv
+    '''
     try:
         dataframe.to_csv("timeline.csv",encoding='utf-8')
     except:
         print("This shiet dint werk")
 
+import pandas as pd
+from sqlalchemy import create_engine
+import pymysql
+pymysql.install_as_MySQLdb()
+
+
+def loadzone(data):
+    '''
+    Loads timeline into sqlite db
+
+    '''
+    try:
+
+        engine = create_engine("sqlite:///peep.sqlite")
+        conn = engine.connect()
+
+        data.to_sql(name='timeline', con= engine, if_exists='replace', index=True)
+        print("All loaded into database")
+
+    except:
+        print("This shiet failed")
 
 # if __name__ == '__main__':
-#     tl = get_timeline("laurasun")
+    # tl = get_timeline("laurasun")
 #     tocsv(tl)
 #     print("Extracted timeline and converted to csv")

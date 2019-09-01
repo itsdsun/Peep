@@ -1,3 +1,7 @@
+'''
+Tester
+'''
+
 import pandas as pd
 from sqlalchemy import create_engine
 import pymysql
@@ -11,6 +15,10 @@ import extract_timeline as et
 # print(engine.table_names())
 
 def loadzone(data):
+    '''
+    Loads timeline into sqlite db
+
+    '''
     try:
 
         engine = create_engine("sqlite:///peep.sqlite")
@@ -22,7 +30,7 @@ def loadzone(data):
     except:
         print("This shiet failed")
 
-
-if __name__ == '__main__':
-    data = et.get_timeline("_lsun")
-    loadzone(data)
+#
+# if __name__ == '__main__':
+#     data = et.get_timeline("disysun")
+#     loadzone(data)
