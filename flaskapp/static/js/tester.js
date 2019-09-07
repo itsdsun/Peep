@@ -1,11 +1,11 @@
 // Select the submit button
 // var submit = d3.select("#submit");
+console.log("hello")
+var button = document.getElementById("search-button");
 
-var button = document.getElementById("searchUser");
-
-button.onclick = function () {
+function getUserTweets () {
     var text = document.getElementById("username-search").value;
-    window.open("/pull/" + text);
+    window.location.replace("/pull/" + text);
 }
 
 // var searchbutton = document.getElementById("submit");
@@ -14,41 +14,26 @@ button.onclick = function () {
 //     window.open("/api/search/" + text);
 // }
 
-var text = document.getElementById("search-form-input").value;
-function getdata() {
+function getData(text) {
+  var text = document.getElementById("search-form-input").value;
+  console.log(text);
+
+  
     /* data route */
   var url = "/api/" + text;
+  console.log(url);
+
+
   d3.json(url).then(function(response) {
 
     console.log(response);
 
     var data = response;
 
-    var layout = {
-      scope: "usa",
-      title: "Pet Pals",
-      showlegend: false,
-      height: 600,
-            // width: 980,
-      geo: {
-        scope: "usa",
-        projection: {
-          type: "albers usa"
-        },
-        showland: true,
-        landcolor: "rgb(217, 217, 217)",
-        subunitwidth: 1,
-        countrywidth: 1,
-        subunitcolor: "rgb(255,255,255)",
-        countrycolor: "rgb(255,255,255)"
-      }
-    };
 
-    Plotly.newPlot("plot", data, layout);
+
   });
 }
-
-buildPlot();
 
 
 
