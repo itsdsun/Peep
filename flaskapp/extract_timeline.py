@@ -1,7 +1,5 @@
 import tweepy
 import requests
-import pandas as pd
-
 from configparser import ConfigParser
 
 config = ConfigParser()
