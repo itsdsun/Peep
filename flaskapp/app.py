@@ -63,7 +63,12 @@ def welcome():
     return render_template("index.html")
     # pass
 
-@app.route("/pull/<username>")
+@app.route("/search")
+def searchpg():
+    return render_template("search.html")
+    # pass
+
+@app.route("/pull/?username=<username>")
 def pull_timeline(username):
     data = et.get_timeline(username)
     et.loadzone(data)
