@@ -5,14 +5,16 @@
 }
 
 body{
+    height: 100%;
     padding: 0;
     margin: 0;
-    background-color: #72B4F0;
+    background-color: white;
     font-family: Poppins, san-serif;
     font-weight: lighter;
     font-size: 1 rem;
-    color: white;
+    color: #3FA3FF;
     min-height: 100vh;
+    overflow: hidden;
 
 }
 .full-height-grow{
@@ -29,16 +31,6 @@ body{
     text-decoration: none; 
 
 }
-.button{
-  background-color: #72B4F0; 
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
 
 .brand-logo-name {
     margin-left: 1rem;
@@ -46,8 +38,9 @@ body{
     font-size: 40px;
 }
 
+/* landing/sign up page */
 .statement{
-    font-size: 30px;
+    font-size: 35px;
     margin-top: 5rem;
     margin-left: 2rem;
 
@@ -61,26 +54,73 @@ body{
     margin-top: 3rem;
     margin-left: 1rem;
     width: 45%;
+    margin-bottom:10rem;
     padding: 10px;
-    background-color: #4070A0;
+    background-color: #3FA3FF;
     border-radius: 7px;
+    color: white;
+    height: 70rem;
+    padding-top: 0px;
+    padding-bottom:0px;
 }
 
+/* sign up box */
 .whitebox-right{
     margin-top: 3rem;
     margin-left: 5rem;
+    align-content: center;
     width: 45%;
+    height: 100%;
     padding: 10px;
     background-color:white;
     border-radius: 7px;
-    color: #4070A0;
-    align-items: center;
-    font-size: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
 }
+/* inside sign up vbox */
+.signup{
+    color: #4070A0;
+    /* align-items: center; */
+    font-size: 30px;
+    padding: 3px 3px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 4rem;
+    margin-right: 2rem; 
+}
+
+.userhandle{
+    width: 75%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+}
+
+/* sign up submit button */
+.subbutt{ 
+        background-color: #3FA3FF; 
+        border: none;
+        color: white;
+        padding: 8px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 7px;
+      }
+
 .description{
     list-style: none;
     margin-right: 1rem;
+    margin-top: 3rem;
     padding-right: 1rem;
+    height: 100%;
+    font-size: 23px;
+    
 }
 
 .main-nav ul{
@@ -111,3 +151,42 @@ body{
     margin: 0 auto;
     padding: 0 40px;
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #4070A0;
+
+  }
+.footerli{
+    list-style: none;
+    display: flex;
+}
+.pooter{
+    text-decoration: none;
+    color: darkgrey;
+    padding: 15px;
+
+
+}
+/* landing page end */
+
+/* search page  */
+
+.search-container{
+    margin: 5rem 1rem;
+}
+
+.searchy{
+    width: 45%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
