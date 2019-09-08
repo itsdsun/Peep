@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <meta name="theme-color" content="#000000" /> -->
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <!-- <link href = "css/styles.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+    <title>Peep</title>
+  </head>
+  <body class="container">
+    <!-- NAV BAR ---------------------------------------------------->
+    <div id="root"></div>
+    <header class="main-header">
+      <a href = "/" class="brand-logo">
+        <!-- <img src="/logo.png" class="cat"> -->
+        <div class="brand-logo-name">Peep</div>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li> <a href = "search">Search</a></li>
+          <li><a href = "about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+      <!---- CONTENT ------------------------------------------------>
+    <div class ="container"
+    {% block content %}
+    {% endblock content %}
+
+    </div>
+
+
+
+
+    <!-- FOOTER ---------------------------------------------------->
+    <div class="footer">
+      <p >
+        <ul class = "footerli">
+        <li> <a class= "pooter" href = "contact.html">Contact</a></li>
+        <li> <a class= "pooter" href = "team.html">Team</a></li>
+        </ul>
+      </p>
+    </div>
+  </body>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="{{ url_for('static', filename='js/tester.js') }}"></script>
+</html>
