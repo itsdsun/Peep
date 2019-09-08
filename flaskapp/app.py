@@ -55,9 +55,6 @@ class timeline(sesh.Model):
 
 
 
-
-
-#create app routes
 @app.route("/", methods=["GET"])
 def welcome():
     # Landing Page
