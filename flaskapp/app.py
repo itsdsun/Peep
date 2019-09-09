@@ -72,7 +72,7 @@ def searchpg():
 def pull_timeline(username):
     data = et.get_timeline(username)
     et.loadzone(data)
-    return render_template("app.html")
+    return render_template("search.html")
 
 @app.route("/api/all_tweets")
 def example():
