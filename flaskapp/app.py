@@ -5,6 +5,7 @@ from sqlalchemy import create_engine, func
 
 from flask import (
     Flask,
+    request,
     render_template,
     jsonify)
 
@@ -54,25 +55,34 @@ class timeline(sesh.Model):
 
 
 
-
-
-#create app routes
-@app.route("/")
+@app.route("/", methods=["GET"])
 def welcome():
     # Landing Page
-    return render_template("index.html")
-    # pass
+    return render_template("testindex.html")
+
+
+@app.route("/", methods=["POST"])
+def pull_timeline():
+    user = request.form["username"]
+    data = et.get_timeline(user)
+    et.loadzone(data)
+    return render_template("search.html")
+
 
 @app.route("/search")
 def searchpg():
     return render_template("search.html")
     # pass
 
+<<<<<<< HEAD
 @app.route("/pull/?username=<username>")
 def pull_timeline(username):
     data = et.get_timeline(username)
     et.loadzone(data)
     return render_template("search.html")
+=======
+
+>>>>>>> dcab4f0c650d132171f0e87c189286686eda6056
 
 @app.route("/api/all_tweets")
 def example():

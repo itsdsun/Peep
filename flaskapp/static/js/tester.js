@@ -1,43 +1,24 @@
 // Select the submit button
 // var submit = d3.select("#submit");
 console.log("hello")
-var button = document.getElementById("search-button");
-
-function getUserTweets () {
-    var text = document.getElementById("username-search").value;
-    window.location.replace("/pull/" + text);
-}
-
-// var searchbutton = document.getElementById("submit");
-// searchbutton.onclick = function () {
-//     var text = document.getElementById("search-form-input").value;
-//     window.open("/api/search/" + text);
-// }
-
-function getData(text) {
-  var text = document.getElementById("search-form-input").value;
-  console.log(text);
-
-  
-    /* data route */
-  var url = "/api/" + text;
-  console.log(url);
+var button = d3.select("subbutt");
 
 
+url = ("/api/all_tweets");
+function getData(){
   d3.json(url).then(function(response) {
-
-    console.log(response);
 
     var data = response;
 
 
 
-  });
-}
+  })
+};
+
+button.onclick = getData();
 
 
-
-// submit.on("click", function() {
+// button.on("click", function() {
 //
 //   // Prevent the page from refreshing
 //   d3.event.preventDefault();

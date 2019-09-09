@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,51 +10,32 @@
     <!-- <link href = "css/styles.css" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
     <link href = "../static/css/style.css" rel="stylesheet">
+=======
+{% extends "layout.html" %}
+{% block content %}
+>>>>>>> dcab4f0c650d132171f0e87c189286686eda6056
 
 
-    <title>Peep</title>
-  </head>
-  <body class="container">
-    <div id="root"></div>
-    <header class="main-header">
-      <a href = "/" class="brand-logo">
-        <!-- <img src="/logo.png" class="cat"> -->
-        <div class="brand-logo-name">Peep</div>
-      </a>
-      <nav class="main-nav">
-        <ul>
-          <li> <a href = "search">Search</a></li>
-          <li><a href = "about">About</a></li>
-        </ul>
-      </nav>
-    </header>
-    <div class = "statement">A search engine for your tweets</div>
+
+  <div class = "statement">A search engine for your tweets</div>
     <div class = "twoboxes">
-    <div class= "bluebox-left">
-      <ul class= "description">
-          <li>1.  Type in your twitter handle to get started</li>&nbsp;
-          <li>2.  Search through your past tweets</li>&nbsp;
-          <li>3.  Filter through results and get an analysis</li>&nbsp;
-      </ul>
-    </div>
-    <div class="whitebox-right">
-      <div class= "signup">Get Started
-      <form class="form-inline" action="/pull/">
-        <label for="username"></label>
-        <input type="username" class = "userhandle" id="username" placeholder="@username" name="username">
-        <button type="submit" class= "subbutt">Search</button>
-      </form>
+      <div class= "bluebox-left">
+        <ul class= "description">
+            <li>1.  Type in your twitter handle to get started</li>&nbsp;
+            <li>2.  Search through your past tweets</li>&nbsp;
+            <li>3.  Filter through results and get an analysis</li>&nbsp;
+        </ul>
+      </div>
+      <div class="whitebox-right">
+        <div class= "signup">Get Started
+          <form class="form-inline" action="/pull/">
+            <label for="username"></label>
+            <input type="username" class = "userhandle" id="username" placeholder="@username" name="username">
+            <button type="submit" class= "subbutt">Search</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-    </div>
-    <div class="footer">
-      <p >
-        <ul class = "footerli">
-        <li> <a class= "pooter" href = "contact.html">Contact</a></li>
-        <li> <a class= "pooter" href = "team.html">Team</a></li>
-        </ul>
-      </p>
-    </div>
-  </body>
 
-</html>
+{% endblock content %}
