@@ -58,7 +58,7 @@ class timeline(sesh.Model):
 @app.route("/", methods=["GET"])
 def welcome():
     # Landing Page
-    return render_template("testindex.html")
+    return render_template("layout.html")
 
 
 @app.route("/", methods=["POST"])
@@ -73,16 +73,6 @@ def pull_timeline():
 def searchpg():
     return render_template("search.html")
     # pass
-
-<<<<<<< HEAD
-@app.route("/pull/?username=<username>")
-def pull_timeline(username):
-    data = et.get_timeline(username)
-    et.loadzone(data)
-    return render_template("search.html")
-=======
-
->>>>>>> dcab4f0c650d132171f0e87c189286686eda6056
 
 @app.route("/api/all_tweets")
 def example():
