@@ -3,7 +3,7 @@
 Flask powered app that conducts a quick analysis of your tweets and allows you to easily search through your timeline.
 
 
-We're still working on Peep, but feel free to check out our work.
+We're still working on Peep, but feel free to check out what we have so far.
 ![](version1.gif)
 
 
