@@ -1,13 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
 
-  Hi, username!
 
-  <div class="search-container">
+
+  <!-- <div class="search-container">
     <form method="POST" action="/">
-      <input type="text" class= "searchy" placeholder="Search.." name="search">
-         <button type="submit" class = subbutt>Submit</button>
+      <input type="text" id= "searchy" placeholder="Search.." name="searchy" required>
+         <button type="submit" id = subbutt>Submit</button>
     </form>
+  </div> -->
+
+  <div id="anal"></div>
+
+  <div id="table-container" style="overflow-y:auto;">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for tweets..">
+    <table id="myTable">
+      <thead>
+        <tr>
+        <th> tweet </th>
+        <th> date </th>
+        </tr>
+      </thead>
+      <tbody id ="data"><tbody>
+
+    </table>
+
   </div>
 
 

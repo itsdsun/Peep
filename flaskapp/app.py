@@ -7,13 +7,20 @@ from flask import (
     Flask,
     request,
     render_template,
+    json,
     jsonify)
 
+# to analyze tweets
 import numpy as np
 import pandas as pd
 import datetime as dt
 
+# to extract and load timeline into sqlite
 import extract_timeline as et
+
+# for filtering words
+from collections import Counter
+import nltk
 '''
 
 #set up database
@@ -69,13 +76,6 @@ def pull_timeline():
     return render_template("search.html")
 
 
-@app.route("/search")
-def searchpg():
-    return render_template("search.html")
-    # pass
-
-
-
 @app.route("/api/all_tweets")
 def example():
     '''
@@ -105,6 +105,95 @@ def search(query):
         } for x in tweets]
     return jsonify(formatted_data)
 
+@app.route("/api/stats")
+def nani():
+    try:
+        alltweets = sesh.session.query(timeline.tweet, timeline.date).all()
+        df = pd.DataFrame([(d.tweet, d.date) for d in alltweets], columns=['tweet', 'date'])
+        all_rt = df[df['tweet'].str.match('RT')]
+        total_rt = int(all_rt['tweet'].count())
+        all_replies = df[df['tweet'].str.contains('@')]
+        total_replies = int(all_replies['tweet'].count())
+
+        # Top 3 RT person
+        rt_dict = {}
+        for x in all_rt['tweet']:
+            tt = x.split()
+            if tt[1] not in rt_dict:
+                rt_dict[tt[1]] = 1
+            else:
+                rt_dict[tt[1]] += 1
+
+        rt_df = pd.DataFrame(list(rt_dict.items()), columns=['username', 'count'])
+        rd_df2 = rt_df.sort_values(by='count', ascending=False).head(3)
+
+
+        uncleanwords = " ".join(df["tweet"]).split()
+        words = []
+        for x in uncleanwords:
+            if '@' not in x:
+                words.append(x)
+
+
+        stopwords1 = nltk.corpus.stopwords.words('english')
+
+        # add an exclude filter
+        stopwords2 = ['u', 'I', 'RT', 'ur', 'da', 'im', 'r', 'like', 'dis','ya','rn','got','n','the','The']
+
+        stopwords = stopwords1.extend(stopwords2)
+
+        words_except_stop_dist = nltk.FreqDist(w for w in words if w not in stopwords1)
+
+        topwords = pd.DataFrame(words_except_stop_dist.most_common(10),
+                            columns=['Word', 'Frequency'])
+
+        hashtags = []
+        for x in uncleanwords:
+            if '#' in x:
+                hashtags.append(x)
+
+        hashtagfreq = nltk.FreqDist(w for w in hashtags)
+
+        tophashtags = pd.DataFrame(hashtagfreq.most_common(10),
+                            columns=['Word', 'Frequency'])
+
+        # Average word length of tweets
+        allthetweets = list(df['tweet'])
+        noRT= [x for x in allthetweets if "RT" not in x]
+        noRTlen = [len(x.split()) for x in noRT]
+        avgword = round((sum(noRTlen) / len(noRTlen)),2)
+
+        # Average character length of tweets
+        noRTlenbychar = [len(list(x)) for x in noRT]
+        avgchar = round((sum(noRTlenbychar) / len(noRTlenbychar)),2)
+
+
+        statsdata = {
+        "retweets": total_rt,
+        "replies": total_replies,
+        "top_RT": [{"count": int(rd_df2['count'].values[0]),
+                    "username": str(rd_df2['username'].values[0])},
+                    {"count": int(rd_df2['count'].values[1]),
+                                "username": str(rd_df2['username'].values[1])},
+                    {"count": int(rd_df2['count'].values[2]),
+                                "username": str(rd_df2['username'].values[2])}
+                    ],
+        "top_words": [{"tweet": str(topwords['Word'].values[x]),
+                                "frequency": int(topwords['Frequency'].values[x])
+                                } for x in range(10)],
+        # "top_hashtags": [{"tweet": str(tophashtags['Word'].values[x]),
+        #                         "frequency": int(tophashtags['Frequency'].values[x])
+        #                         } for x in range(9)]
+        "average_words_per_tweet": float(avgword),
+        "average_char_per_tweet": float(avgchar)
+
+        }
+
+
+    except Exception as e:
+        print(e)
+
+    return jsonify(statsdata)
 
 #run the python script
 if __name__ == "__main__":

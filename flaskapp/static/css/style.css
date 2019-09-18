@@ -14,7 +14,7 @@ body{
     font-size: 1 rem;
     color: #3FA3FF;
     min-height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
 
 }
 .full-height-grow{
@@ -26,9 +26,9 @@ body{
     display: flex;
     align-items: center;
     font-size: 1.25 em;
-    color: inherit;  
+    color: inherit;
     /* removes link underline*/
-    text-decoration: none; 
+    text-decoration: none;
 
 }
 
@@ -75,7 +75,7 @@ body{
     background-color:white;
     border-radius: 7px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   
+
 }
 /* inside sign up vbox */
 .signup{
@@ -86,7 +86,7 @@ body{
     margin-top: 3rem;
     margin-bottom: 3rem;
     margin-left: 4rem;
-    margin-right: 2rem; 
+    margin-right: 2rem;
 }
 
 .userhandle{
@@ -101,8 +101,8 @@ body{
 }
 
 /* sign up submit button */
-.subbutt{ 
-        background-color: #3FA3FF; 
+.subbutt{
+        background-color: #3FA3FF;
         border: none;
         color: white;
         padding: 8px 15px;
@@ -120,14 +120,14 @@ body{
     padding-right: 1rem;
     height: 100%;
     font-size: 23px;
-    
+
 }
 
 .main-nav ul{
     display:flex;
     padding:0;
     /* removes bullet points */
-    list-style: none; 
+    list-style: none;
 }
 
 .main-nav a{
@@ -141,7 +141,7 @@ body{
 }
 
 .main-header{
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -153,7 +153,7 @@ body{
 }
 
 .footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -189,4 +189,39 @@ body{
     box-sizing: border-box;
 }
 
+* {
+  box-sizing: border-box;
+}
 
+#myInput {
+  /* background-image: url('/css/searchicon.png'); */
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  color: black;
+  height: 100%;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
