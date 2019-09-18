@@ -4,7 +4,7 @@ Flask powered app that conducts a quick analysis of your tweets and allows you t
 
 
 We're still working on Peep, but feel free to check out what we have so far.
-![](version1.gif)
+![](version1.1.gif)
 
 
 Run it locally:
